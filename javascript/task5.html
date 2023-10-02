@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"], input[type="email"], input[type="url"], textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        #output {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <h1>Contact Form</h1>
+    <form id="contactForm">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" pattern="[^@\s]+@gmail\.com" required>
+        <small>(Must be a Gmail address)</small>
+
+        <label for="website">Website:</label>
+        <input type="url" id="website" name="website" required>
+
+        <label for="message">Message:</label>
+        <textarea id="message" name="message" rows="4" required></textarea>
+
+        <button type="submit">Submit</button>
+    </form>
+    <p id="output"></p>
+
+    <script>
+        const contactForm = document.getElementById('contactForm');
+        const output = document.getElementById('output');
+
+        contactForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            // Validate the email format
+            const emailInput = document.getElementById('email');
+            const emailPattern = /[^@\s]+@gmail\.com/;
+            if (!emailPattern.test(emailInput.value)) {
+                output.textContent = 'Please enter a valid Gmail address.';
+                return;
+            }
+
+            // Validate the website URL
+            const websiteInput = document.getElementById('website');
+            try {
+                new URL(websiteInput.value);
+            } catch (error) {
+                output.textContent = 'Please enter a valid website URL.';
+                return;
+            }
+
+            // If all validations pass, you can submit the form
+            output.textContent = 'Form submitted successfully!';
+            contactForm.reset();
+        });
+    </script>
+</body>
+</html>
