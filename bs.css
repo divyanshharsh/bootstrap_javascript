@@ -1,0 +1,21 @@
+body {
+    font-family: sans-serif;
+  }
+  
+  h1 {
+    text-align: center;
+  }
+  
+  p {
+    text-align: justify;
+  }
+  
+  footer {
+    align-items: center;
+    text-align: center;
+    margin-top: 390px;
+    padding: 20px 0;
+  }
+  
+  
+  
